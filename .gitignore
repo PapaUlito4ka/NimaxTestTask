@@ -4,6 +4,7 @@ db.sqlite3
 .env
 /app
 .idea
+__pycache__/
 # Created by https://www.toptal.com/developers/gitignore/api/pycharm
 # Edit at https://www.toptal.com/developers/gitignore?templates=pycharm
 
