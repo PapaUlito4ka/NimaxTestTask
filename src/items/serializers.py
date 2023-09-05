@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from src.categories.models import Category
 from src.categories.serializers import CategorySerializer
 from src.items.models import Item
 from src.items.validators import categories_count_validator
@@ -7,7 +8,10 @@ from src.items.validators import categories_count_validator
 
 class ItemSerializer(serializers.ModelSerializer):
     categories = serializers.SlugRelatedField(
-        many=True, slug_field="name", validators=[categories_count_validator]
+        queryset=Category.objects.all(),
+        many=True,
+        slug_field="name",
+        validators=[categories_count_validator],
     )
 
     class Meta:

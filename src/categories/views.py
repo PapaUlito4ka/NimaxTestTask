@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import viewsets, mixins, status
-from rest_framework.exceptions import APIException
+from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 
@@ -17,7 +17,7 @@ class CategoryViewSet(
     def destroy(self, request, *args, **kwargs):
         category: Category = self.get_object()
         if category.items.count() > 0:
-            raise APIException(
+            raise ValidationError(
                 detail=f'Cannot delete category "{category.name}": has items',
                 code=status.HTTP_400_BAD_REQUEST,
             )
